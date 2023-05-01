@@ -1,0 +1,27 @@
+import { useAuth, VIEWS } from "./AuthProvider";
+
+import ResetPassword from "./ResetPassword";
+import SignIn from "../../pages/auth/SignIn";
+import SignUp from "../../pages/auth/register";
+import UpdatePassword from "./UpdatePassword";
+
+const Auth = ({ view: initialView }) => {
+  let { view } = useAuth();
+
+  if (initialView) {
+    view = initialView;
+  }
+
+  switch (view) {
+    case VIEWS.UPDATE_PASSWORD:
+      return <UpdatePassword />;
+    case VIEWS.FORGOTTEN_PASSWORD:
+      return <ResetPassword />;
+    case VIEWS.SIGN_UP:
+      return <SignUp />;
+    default:
+      return <SignIn />;
+  }
+};
+
+export default Auth;
